@@ -1,5 +1,6 @@
 import grapg_utils as utils
 from queue import Queue
+from disjointset2 import UnionbySizePathCompressionDisjointSet
 
 def auxDfs(u, parent, visit, inp):
     visit[u] = 1
@@ -51,6 +52,18 @@ def detectCycle2(inp):
                 return True
     return False
 
+#==============================================================================
+#TC:Theta(V^2)   SC:Theta(V)
+def detectCycle3(inp):
+    n = len(inp)
+    set1 = UnionbySizePathCompressionDisjointSet(n)
+    for u in range(n):
+        for v in range(u+1, n):       # we check only upper triagle
+            if(inp[u][v] == 1):
+                if(set1.find(u) == set1.find(v)):
+                    return True
+                set1.union(u, v)
+    return False
            
 def main():
    # n = int(sys.argv[1])
@@ -72,7 +85,7 @@ def main():
    # utils.display(inp)
     print(detectCycle1(inp))
     print(detectCycle2(inp))
-    #print(detectCycle3(inp))
+    print(detectCycle3(inp))
     
 if __name__=="__main__":
     main()
