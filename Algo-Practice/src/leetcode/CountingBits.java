@@ -28,6 +28,8 @@ public class CountingBits {
 	public static void main(String[] args) {
 		CountingBits obj = new CountingBits();
 		System.out.println("\n" + Arrays.toString(obj.countBits(5)));
+		
+		System.out.println(1+8+6+2+5+4+8+3+7);
 	}
 
 }
